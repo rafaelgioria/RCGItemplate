@@ -1,0 +1,478 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{RCGIreport}[2020/07/06 RCGI report latex template style - Rafael S. Gioria]
+
+
+%=============================
+% PACKAGES REQUIRED Report Style
+
+% character encoding packages
+\RequirePackage[utf8]{inputenc}   % package for character coding
+\RequirePackage[T1]{fontenc}        % package for character coding
+% language package
+\RequirePackage[UKenglish]{babel}
+
+% Watermarks -- not used
+%\RequirePackage{watermark}
+
+% Fancyheader used to set header/foot 
+\RequirePackage{fancyhdr}
+
+% Counts total number of pages and saves (example: page n of total)
+\RequirePackage{lastpage}  
+
+% FONT CHOICE
+%\RequirePackage{mathptmx}	% times
+%\RequirePackage{type1cm}	% previous EMB
+%\RequirePackage{luctime}
+% mathematical fonts
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{amsbsy}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{latexsym}
+\RequirePackage{dsfont}
+
+% TABLES packages
+% Tables multirow package
+\RequirePackage{array}
+\RequirePackage{multirow}
+\RequirePackage{tabularx}
+%\RequirePackage{booktabs}
+
+% FIGURES packages
+\RequirePackage[pdftex]{graphicx}   % more figure options
+\RequirePackage{subfigure}
+\RequirePackage{layout}     % help on the floats distribution
+\RequirePackage{afterpage}  % in order to help placing the figures
+\RequirePackage{rotating}   % use to rotate floats
+\RequirePackage{extraplaceins} % dont let figures go corssing sections
+\RequirePackage[skip=1ex]{caption} % control spacing between cpation adn floats
+
+% PDF doc has clickable links
+%\RequirePackage[bookmarks=true,pdfborder={0 0 0}]{hyperref}  % non-colored links
+\RequirePackage[hidelinks]{hyperref}
+%\hypersetup{pdfpagelayout=SinglePage}
+
+% COLORED texts
+\RequirePackage{xcolor}
+
+% BIBIOGRAPHY SUPPORT BASED IN NATBIB
+% Bibliography/citation style (Style = Author (year) ) - Combined with RefStile.bst
+\RequirePackage[round,elide]{natbib}
+
+% Nomenclature package -- not used
+%\RequirePackage{nomencl}
+%\makenomenclature  % making applicable the nomenclature package
+%makeindex <name text>.nlo -s nomencl.ist -o <name text>.nls
+\RequirePackage{bookmark}
+
+% watermark -- not used
+%\RequirePackage{draftwatermark}
+%\SetWatermarkText{Confidential}
+%\SetWatermarkScale{1}
+
+% APPENDE PDF PAGES
+%include pdf file
+\RequirePackage{pdfpages}
+
+% ADVANCED ANNOTATINS AND GRAPHICS - used for frontpage
+\RequirePackage{tikz}
+\RequirePackage[top=2.5cm,left=3cm,right=3cm,bottom=2.5cm]{geometry}
+\RequirePackage[nodisplayskipstretch,onehalfspacing]{setspace}
+
+% LOREM IPSUM FPOR TEMPLATE PRESENTATION
+\RequirePackage{lipsum}
+\RequirePackage{blindtext}
+
+% TABLE OF CONTENTS FORMAT -- this gives a warning!
+\RequirePackage{tocstyle}
+%\RequirePackage{tocloft}
+%\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % for parts
+%\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % for chapters
+
+%% flexible revision numbered list
+\RequirePackage{xparse}
+
+% end PACKAGES REQUIRED
+%=======================================
+
+
+
+% ======================
+% new Definitions
+% Shorten vertical space between figure caption and text
+\setlength{\textfloatsep}{3.0ex}
+
+% Table centering format
+\newcolumntype{S}{>{\small\centering\arraybackslash} m}
+
+%====================
+% DEFINING RCGI COLORS
+\definecolor{rcgigreen}{RGB}{137,187,48}
+\definecolor{rcgiblue}{RGB}{33,134,158}
+
+%====================
+% DEFINING HEADERS AND FOOTERS
+\fancypagestyle{plain}{
+\fancyhead[L]{~}
+\fancyhead[C]{~}
+\fancyhead[R]{\fontfamily{phv}\selectfont\small\MakeUppercase{\@docID}}
+\fancyfoot[R]{\fontfamily{phv}\selectfont\small \thepage~/~\pageref*{LastPage}}
+\fancyfoot[L]{\fontfamily{phv}\selectfont\small RESEARCH CENTRE FOR GAS INNOVATION}
+\fancyfoot[C]{~}
+\renewcommand{\footrulewidth}{1pt}
+\renewcommand{\headrulewidth}{1pt}
+}
+
+
+% ============================================================================
+% CHAPTER/SECTIONS re-SETTING
+% ============================================================================
+% rip off the word "chapter" and number the sections correctly
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+\vspace*{-20pt}%
+{\setlength{\parindent}{0pt} \raggedright \normalfont
+\bfseries\LARGE \thechapter.~#1 \par \nobreak \vspace{20pt}}}
+\renewcommand{\@makeschapterhead}[1]{%
+\vspace*{0pt}%
+{\setlength{\parindent}{0pt} \raggedright \normalfont
+\bfseries\LARGE #1 \par \nobreak \vspace{0.3in}}}
+% END: rip off the word "chapter" and number the sections correctly
+
+%% change size of title of section
+%\renewcommand\section{\@startsection {section}{1}{\z@}%
+%                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+%                                   {2.3ex \@plus.2ex}%
+%                                   {\normalfont\large\bfseries}}
+\makeatother
+%END CHAPTER/SECTIONS re-SETTING
+
+
+
+
+
+
+
+
+
+% ============================================================================
+% ALIASES
+% ============================================================================
+\newcommand{\etal}{\mbox{\textit{et al.}}}
+\newcommand{\etc}{etc.\ }
+\newcommand{\eg}{e.g.\ }
+% end aliases
+
+
+% ============================================================================
+% RENAME OF STANDARD SECTIONS/CAPTIONS
+% ============================================================================
+%\addto\captionsUKenglish{%
+%  \renewcommand{\contentsname}%
+%    {INDEX}%
+%}
+%\addto\captionsUKenglish{%
+%  \renewcommand{\listfigurename}%
+%    {\large{LIST OF FIGURES}}%
+%}
+%\addto\captionsUKenglish{%
+%  \renewcommand{\listtablename}%
+%    {\large{LIST OF TABLES}}%
+%}
+%\addto\captionsUKenglish{%
+%  \renewcommand{\figurename}%
+%    {FIGURE}%
+%}
+%\addto\captionsUKenglish{%
+%  \renewcommand{\tablename}%
+%    {TABLE}%
+%}
+\addto\captionsUKenglish{%
+  \renewcommand{\bibname}%
+    {References}%
+    \renewcommand{\refname}%
+    {References}%
+}
+% end RENAME
+
+
+
+% ============================================================================
+% REDEFINE BIBLIOGRAPHY SECTION
+% ============================================================================
+\makeatletter
+\def\thebibliography#1{\chapter{\bibname}
+\protect\@mkboth{\bibname}{\bibname}
+%\markboth{\bibname}{\bibname}
+\list
+      {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+\advance\leftmargin\labelsep
+\usecounter{enumi}}
+\def\newblock{\hskip .11em plus .33em minus .07em}
+\sloppy\clubpenalty4000\widowpenalty4000
+\sfcode`\.=1000\relax}
+\makeatother
+% END: redefine bibliography section
+
+
+
+
+
+
+% ================
+% COVER PAGE
+% ================
+\makeatletter
+
+% Doc types choices- Monthly Technical Report, Partial Technical Report, Final Technical Report, Partial Scientific Report, Final Scientific Report
+\newcommand{\@doctype}{}
+\newcommand{\doctype}[1]{\renewcommand{\@doctype}{#1}}
+
+%%CODIFICATION
+%%RCGI	RCGI
+%%
+%%Identifies the Programme or area within the RCGI
+%%AAA 	ENG    Engineering                     
+%%    	PCH    Physical-Chemistry              
+%%    	EEP    Economics & Energy Policies     
+%%    	CAB    CO2 Abatement                   
+%%    	KDF    Knowledge Diffusion             
+%%    	TCT    Technology Transfer             
+%%    	COM	   Communication	
+%%
+%%## are the two digits of project number. Always use two digits, p.e. P04, P21, etc.
+%%BBB		P##
+%%
+%%CCC		PSR		Partial Scientific Report                          
+%%		FSR		Final Scientific Report   
+%%		   	
+%%DDD		###		Identifies the document number. Always use three digits.
+%%
+%%EE		##		Identifies the revision number. Always use two digits. Please use 00 for the original document.
+\newcommand{\@docID}{}
+\newcommand{\docID}[1]{\renewcommand{\@docID}{#1}}
+
+\newcommand{\makecoverpage}{
+\begin{titlepage} 
+{
+\newgeometry{margin = 0in}
+\begin{tikzpicture}[
+remember picture,
+overlay,
+shift = {(current page.north west)}
+]
+
+\fill[rcgigreen]
+(0, 0) rectangle (\paperwidth, -5.21cm);
+
+\fill[rcgiblue, opacity = 1]
+(0, -\paperheight) rectangle (\paperwidth, 13.25 cm-\paperheight);
+
+\draw[line width=6pt,color=white] ([xshift=-8.72 cm,yshift=13.095 cm]current page.center) rectangle ([xshift=8.72 cm,yshift=-13.095 cm ]current page.center);
+
+\node[color=rcgigreen](TITLE) at ([xshift=0 cm,yshift=5.25 cm]current page.center) {
+	\begin{minipage}[c]{15cm}
+	\fontfamily{phv}
+	\fontsize{32}{40pt} %40 was 35
+	\selectfont
+	%\uppercase
+	%\bfseries
+	\centering
+	\MakeUppercase{\@title} % PROJECT 38 - HIGH EFFICIENCY EJECTOR FOR GAS COMPRESSION
+	\end{minipage}
+};
+
+\node[color=rcgiblue](cat-status) at ([xshift=0 cm,yshift=-0.195 cm]current page.center) {
+	\begin{minipage}[c]{15cm}
+	\fontfamily{phv}
+	\fontsize{16}{26pt}
+	\selectfont
+	%\uppercase
+	%\bfseries
+	\centering
+	\MakeUppercase{\@doctype}%PARTIAL SCIENTIFIC REPORT
+	
+	\MakeUppercase{\@docID}%RCGI-CAB-P38-PSR-002-03
+	\end{minipage}
+};
+
+\node[color=white](logo) at ([xshift=0 cm,yshift=-8.465 cm]current page.center) {
+	\centering \includegraphics[width=6.74cm]{logos/eng_white_vertical}
+};
+
+\end{tikzpicture}	
+%{
+%\def\unitlength{}	
+%\put(0.5\paperwidth, -.33\paperheight){
+%	
+%\fontfamily{phv}
+%\fontsize{32}{35pt}
+%\selectfont
+%\bfseries
+%PROJECT 38
+%
+%}}
+
+
+}
+\end{titlepage}
+
+} % end define COVER PAGE
+\makeatother
+
+
+
+% ================
+% REVISION SHEET
+% ================
+\makeatletter
+
+\newcommand{\@authortwo}{}
+\newcommand{\authortwo}[1]{\renewcommand\@authortwo{#1}}
+\newcommand{\@programme}{}
+\newcommand{\programme}[1]{\renewcommand\@programme{#1}}
+\newcommand{\@projectnumber}{}
+\newcommand{\projectnumber}[1]{\renewcommand\@projectnumber{#1}}
+
+\newcommand{\makerevsheet}{
+{
+{\setstretch{1.2}
+%\renewcommand{\baselinestretch}{1.5}
+\renewcommand{\arraystretch}{1.4}
+\noindent %minus 0,45
+\begin{center}
+\begin{tabular}{!{\vrule width 2pt}m{0.84cm}|m{2.54cm}|m{4.46cm}|m{0.90cm}|m{1.48cm}|m{2.15cm}!{\vrule width 2pt}}
+\noalign{\hrule height 2pt}
+\multicolumn{2}{!{\vrule width 2pt}l|}{\fontfamily{phv}\selectfont\textbf{DOC.\ NUMBER:}} & \multicolumn{4}{|l!{\vrule width 2pt}}{\MakeUppercase{\@docID}} \\ 
+\noalign{\hrule height 2pt}
+\multicolumn{2}{!{\vrule width 2pt}l|}{\fontfamily{phv}\selectfont\textbf{PROGRAMME:}} & \multicolumn{4}{|l!{\vrule width 2pt}}{\MakeUppercase{\@programme}} \\ \hline
+\multicolumn{2}{!{\vrule width 2pt}l|}{\fontfamily{phv}\selectfont\textbf{PROJECT NUMBER:}} & \multicolumn{4}{|l!{\vrule width 2pt}}{\@projectnumber} \\ 
+\noalign{\hrule height 2pt}
+\multicolumn{2}{!{\vrule width 2pt}l|}{\fontfamily{phv}\selectfont\textbf{DOC.\ TYPE:.}} & \multicolumn{4}{|l!{\vrule width 2pt}}{\MakeUppercase{\@doctype}} \\ \hline
+\multicolumn{2}{!{\vrule width 2pt}l|}{\fontfamily{phv}\selectfont\textbf{DOC.\ TITLE:}} & \multicolumn{4}{|l!{\vrule width 2pt}}{\begin{minipage}[t][2.13cm]{10.45cm}\MakeUppercase{\@title}\vspace{3pt}\end{minipage}} \\ \hline
+\multicolumn{2}{!{\vrule width 2pt}l|}{ \fontfamily{phv}\selectfont\textbf{AUTHORS:} } & {\begin{minipage}[t][5.16cm]{4.775cm} \@author
+    \end{minipage}} & \multicolumn{3}{|l!{\vrule width 2pt}}{ \begin{minipage}[t]{4.775cm}%{
+        \@authortwo }
+       \end{minipage}} \\
+\noalign{\hrule height 2pt}
+\fontfamily{phv}\selectfont\textbf{REV.} & 
+ \multicolumn{3}{|l|}{\fontfamily{phv}\selectfont \textbf{BRIEF DESCRIPTION OR ALTERED SECTIONS}} & \fontfamily{phv}\selectfont\textbf{APP.} &  \fontfamily{phv}\selectfont \textbf{DATE} \\ \hline
+ 00 & 
+ \multicolumn{3}{|l|}{Initial commit} & RSG & 20/06/2020 \\ \hline
+  & 
+ \multicolumn{3}{|l|}{~} &  &  \\ \hline
+  & 
+ \multicolumn{3}{|l|}{~} &  &  \\ \hline
+  & 
+ \multicolumn{3}{|l|}{~} &  &  \\ \hline
+  & 
+ \multicolumn{3}{|l|}{~} &  &  \\ \hline
+  & 
+ \multicolumn{3}{|l|}{~} &  &  \\ \hline
+   & 
+ \multicolumn{3}{|l|}{~} &  &  \\
+\noalign{\hrule height 2pt}
+\multicolumn{6}{!{\vrule width 2pt}c!{\vrule width 2pt}}{
+\begin{minipage}[b]{13cm}
+\fontfamily{phv}\selectfont
+\begin{center}
+~\vspace{1ex}
+
+    \includegraphics[width=5.3cm]{logos/eng_color_horizontal}
+    
+   \fontsize{12}{18pt}\selectfont RESEARCH CENTRE FOR GAS INNOVATION
+    
+\fontsize{10}{14pt}\selectfont Av.\ Prof Mello Moraes 2231, 05508-030, São Paulo SP, Brazil
+
+\href{www.rcgi.poli.usp.br}{www.rcgi.poli.usp.br} | \href{mailto:rcgi@usp.br}{rcgi@usp.br} | Tel.: +55 11 30915646
+
+ 
+\end{center} %\vspace{2pt}
+\end{minipage}
+} \\
+\noalign{\hrule height 2pt}
+\end{tabular}
+
+\end{center}
+}		
+
+\newpage
+} % end define makerevsheet
+\makeatother
+
+
+\makeatletter
+\ExplSyntaxOn
+\NewDocumentCommand{\revision}{ >{ \SplitList {,} } m }
+ {
+
+  \setstretch{1.2}
+%\renewcommand{\baselinestretch}{1.5}
+\renewcommand{\arraystretch}{1.4}
+\noindent %minus 0,45
+\begin{center}
+\begin{tabular}{!{\vrule width 2pt}m{0.84cm}|m{2.54cm}|m{4.46cm}|m{0.90cm}|m{1.48cm}|m{2.15cm}!{\vrule width 2pt}}
+\noalign{\hrule height 2pt}
+\multicolumn{2}{!{\vrule width 2pt}l|}{\fontfamily{phv}\selectfont\textbf{DOC.\ NUMBER:}} & \multicolumn{4}{|l!{\vrule width 2pt}}{\MakeUppercase{\@docID}} \\ 
+\noalign{\hrule height 2pt}
+\multicolumn{2}{!{\vrule width 2pt}l|}{\fontfamily{phv}\selectfont\textbf{PROGRAMME:}} & \multicolumn{4}{|l!{\vrule width 2pt}}{\MakeUppercase{\@programme}} \\ \hline
+\multicolumn{2}{!{\vrule width 2pt}l|}{\fontfamily{phv}\selectfont\textbf{PROJECT\ NUMBER:}} & \multicolumn{4}{|l!{\vrule width 2pt}}{\@projectnumber} \\ 
+\noalign{\hrule height 2pt}
+\multicolumn{2}{!{\vrule width 2pt}l|}{\fontfamily{phv}\selectfont\textbf{DOC.\ TYPE:.}} & \multicolumn{4}{|l!{\vrule width 2pt}}{\MakeUppercase{\@doctype}} \\ \hline
+\multicolumn{2}{!{\vrule width 2pt}l|}{\fontfamily{phv}\selectfont\textbf{DOC.\ TITLE:}} & \multicolumn{4}{|l!{\vrule width 2pt}}{\begin{minipage}[t][2.13cm]{10.45cm}\MakeUppercase{\@title}\vspace{3pt}\end{minipage}} \\ \hline
+\multicolumn{2}{!{\vrule width 2pt}l|}{ \fontfamily{phv}\selectfont\textbf{AUTHORS:} } & {\begin{minipage}[t][5.16cm]{4.775cm} \@author
+    %Rafael S.\  Gioria\\ Annoyed with WORD \\ \LaTeX\ Shall solve \\ Victor \\ Ivan\\ Lívia
+    \end{minipage}} & \multicolumn{3}{|l!{\vrule width 2pt}}{ \begin{minipage}[t]{4.775cm}%{
+        \@authortwo
+    %\it coordinator\\ Motivational fact \\ Solution\\ MSc \\ Post Doc \\ MSc }
+       \end{minipage}} \\
+\noalign{\hrule height 2pt}
+\fontfamily{phv}\selectfont\textbf{REV.} & 
+ \multicolumn{3}{|l|}{\fontfamily{phv}\selectfont \textbf{BRIEF\ DESCRIPTION\ OR\ ALTERED\ SECTIONS}} & \fontfamily{phv}\selectfont\textbf{APP.} &  \fontfamily{phv}\selectfont \textbf{DATE} \\ \hline
+  \ProcessList { #1 } { \davs__revision_row:n }
+  \noalign{\hrule height 2pt}
+\multicolumn{6}{!{\vrule width 2pt}c!{\vrule width 2pt}}{
+\begin{minipage}[b]{13cm}
+\fontfamily{phv}\selectfont
+\begin{center}
+~\vspace{1ex}
+
+    \includegraphics[width=5.3cm]{logos/eng_color_horizontal}\par
+    
+   \fontsize{12}{18pt}\selectfont {RESEARCH\ CENTRE\ FOR\ GAS\ INNOVATION}\par
+    
+\fontsize{10}{14pt}\selectfont {Av.\ Prof\ Mello\ Moraes\ 2231,\ 05508-030,\ São\ Paulo\ SP,\ Brazil}\par
+
+{\href{www.rcgi.poli.usp.br}{www.rcgi.poli.usp.br}\ |\ \href{mailto:rcgi@usp.br}{rcgi@usp.br}\ |\ Tel.:\ +55\ 11\ 30915646}
+\end{center} %\vspace{2pt}
+\end{minipage}
+} \\
+\noalign{\hrule height 2pt}
+\end{tabular}
+
+\end{center}
+ }
+\cs_new_protected:Nn \davs__revision_row:n
+ {
+  \davs__revision_row:nnnn #1
+ }
+\cs_new_protected:Nn \davs__revision_row:nnnn
+ {
+  \davs__revision_do:nnnn { #1 } { #2 } { #3 } { #4 }
+ }
+\cs_new_protected:Nn \davs__revision_do:nnnn
+ {
+  #1 & 
+  \multicolumn{3}{|l|}{#2}
+  & #3 & #4 \\ \hline
+ }
+\ExplSyntaxOff
+\makeatother
+
+%% -------------------------------------
+
+
+% defining page style
+\pagestyle{plain}

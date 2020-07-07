@@ -1,0 +1,120 @@
+% !TeX spellcheck = en_UK
+% ------------------------------------------------------
+% RCGI: Research Centre for Gas Innovation 
+% Latex Template
+% please do not change documentclass options
+% ---------------------------------------
+\documentclass[11pt,a4paper]{report}
+
+\usepackage{RCGIreport}
+
+% use a preamble file if you want to insert additional packages
+\input{preamble}
+
+
+
+% see instructions below
+\title{Project~00 -- \LaTeX\ Template for RCGI reports}
+\doctype{\LaTeX\ Template for Scientific Report}
+\docID{RCGI-AAA-BBB-CCC-DDD-EE}
+\programme{CO$_2$ Abatement}
+\projectnumber{00}
+
+% Author lists
+\author{Rafael S.\  Gioria\\ Annoyed with MS-WORD \\ \LaTeX\ Shall solve \\ author4 \\ author5\\ author6}
+% Second column of authors in project
+\authortwo{\it creator\\ fact \\ Solution\\ MSc \\ Post Doc \\ MSc }
+
+% -- above commands
+% \title{ } report title - Suggested: Project ## - name of the project
+% \projectnumber{08} -- 1 or 2 digits
+% \doctype{ } Doc types choices- Monthly Technical Report, Partial Technical Report, Final Technical Report, Partial Scientific Report, Final Scientific Report
+% \programme{ ]  -- see options below - 3rd column assoiated with AAA 
+%% \docID{ }  -- see long text below
+%% RCGI	RCGI
+%%
+%% Identifies the Programme or area within the RCGI
+%% AAA 	ENG    Engineering                     
+%%    	PCH    Physical-Chemistry              
+%%    	EEP    Economics & Energy Policies     
+%%    	CAB    CO2 Abatement                   
+%%    	KDF    Knowledge Diffusion             
+%%    	TCT    Technology Transfer             
+%%    	COM	   Communication	
+%%
+%% ## are the two digits of project number. Always use two digits, p.e. P04, P21, etc.
+%% BBB		P##
+%%
+%% CCC		PSR		Partial Scientific Report 
+%%  		FSR		Final Scientific Report   
+%%		   	
+%% DDD		###		Identifies the document number. Always use three digits.
+%%
+%% EE		##		Identifies the revision number. Always use two digits. Please use 00 for the original document.
+
+
+
+\begin{document}
+
+% -----------------------------------------
+% CREATE coverpage - defined in RCGIreport.sty
+\makecoverpage
+% -----------------------------------------
+
+% -----------------------------------------
+% CREATE revision sheet
+% -----------------------------------------
+% EDIT HERE YOUR  list your revisions in the following format
+% - each revision is a 4-tuple
+% - separate each revision with comma ,
+%{rev}{description}{app}{date},
+%{rev1}{description1}{ap1p}{date1}
+\revision{
+{00}{initial commit}{RSG}{05/07/2020},
+{01}{1st altered}{RSG}{07/07/2020},
+{~}{~}{~}{~},
+{~}{~}{~}{~},
+{~}{~}{~}{~},
+{~}{~}{~}{~}
+}
+% -----------------------------------------
+
+
+
+% CREATE Table of Contents - do not change
+\tableofcontents
+
+
+
+% -----------------------------------------
+%% Main text
+% -----------------------------------------
+
+%% EXECUTIVE SUMMARY CHAPTER
+\input{executivesum}
+
+
+%% INSTRUCTIONS CHAPTER
+\input{instructions}
+
+% RANDOM TESTS
+\blinddocument
+	
+	
+	
+% -----------------------------------------
+% References
+% -----------------------------------------
+\bibliographystyle{Ref_Style} % style based in JFM
+%\clearpage \phantomsection \addcontentsline{toc}{chapter}{References}
+\bibliography{RCGI} % .bib archive with reference
+
+% -----------------------------------------
+%Appendix
+% -----------------------------------------
+\appendix
+%\watermark{} % retirar a marca d'água
+\input{appendix_name1}
+\input{appendix_name2}
+
+\end{document}
